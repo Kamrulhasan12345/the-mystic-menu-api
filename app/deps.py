@@ -22,3 +22,13 @@ def verify_jwt(credentials: HTTPAuthorizationCredentials = Depends(security)):
         return user
     except Exception as e:
         raise HTTPException(status_code=401, detail=str(e))
+
+def verify_jwt_ret(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    token = credentials.credentials
+    try:
+        user = supabase.auth.get_user(token)
+        if not user:
+            raise HTTPException(status_code=401, detail="Invalid token")
+        return token
+    except Exception as e:
+        raise HTTPException(status_code=401, detail=str(e))
