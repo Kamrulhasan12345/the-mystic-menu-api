@@ -1,12 +1,11 @@
 from google.genai import Client, types
-from schemas.recipes import Recipe
 
 import os
 
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-genai = Client(api_key="AIzaSyChJsbrSgX6xAmwOxWUofs2nugkfqdNHdI")
+genai = Client(api_key=GEMINI_API_KEY)
 
 async def generate_description(recipe_name, recipe_type="creative"):
     prompt = """**Recipe Name:** {recipe_name}
