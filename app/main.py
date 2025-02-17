@@ -15,11 +15,11 @@ The Mystic Menu API empowers culinary creativity. It provides the tools for deve
 tags_metadata = [
     {
         "name": "auth",
-        "description": "Operations with **authentication**. Provides access_token and user informations",
+        "description": "Operations with **authentication**. Provides *access_token* and user informations.",
     },
     {
         "name": "recipes",
-        "description": "Operations with **recipes**. Requires authentication via 'Authorize' button above, accepting access_token from /auth/signin"
+        "description": "Operations with **recipes**. Requires authentication via **Authorize** button above, accepting *access_token* from */auth* urls."
     },
 ]
 
