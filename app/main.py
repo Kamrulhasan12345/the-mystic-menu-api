@@ -14,3 +14,7 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="/auth")
 app.include_router(recipes.router, prefix="/recipes")
+
+@app.get("/")
+async def root():
+    return {"details": "Go to /docs to get started!"}
