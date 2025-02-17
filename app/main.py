@@ -17,4 +17,4 @@ app.include_router(recipes.router, prefix="/recipes")
 
 @app.get("/")
 async def root():
-    return {"details": "Go to /docs to get started!"}
+    return {"detail": "Go to /docs to get started!"}
