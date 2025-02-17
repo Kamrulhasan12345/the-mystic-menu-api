@@ -5,7 +5,7 @@ from app.schemas.recipes import RecipeIn, Recipe
 
 router = APIRouter()
 
-@router.get("/")
+@router.get("/", tags=['recipes'])
 async def get_recipes(user=Depends(verify_jwt)):
     try:
         response = supabase.table("recipes").select("*").eq("user_id", user.user.id).execute()
@@ -18,7 +18,7 @@ async def get_recipes(user=Depends(verify_jwt)):
         )
 
 
-@router.post("/")
+@router.post("/", tags=['recipes'])
 async def add_recipes(recipe: RecipeIn, user=Depends(verify_jwt)):
     try:
         response = supabase.table("recipes").insert({
@@ -36,7 +36,7 @@ async def add_recipes(recipe: RecipeIn, user=Depends(verify_jwt)):
             status_code=500, detail=f"Adding recipes failed: {e}"
         )
 
-@router.get("/{id}")
+@router.get("/{id}", tags=['recipes'])
 async def get_recipe(id: str, user=Depends(verify_jwt)):
     try:
         response = supabase.table("recipes").select("*").eq("user_id", user.user.id).eq("id", id).execute()
@@ -48,7 +48,7 @@ async def get_recipe(id: str, user=Depends(verify_jwt)):
             status_code=500, detail=f"Getting all recipes failed: {e}"
         )
 
-@router.delete("/{id}")
+@router.delete("/{id}", tags=['recipes'])
 async def delete_recipe(id: str, user=Depends(verify_jwt)):
     try:
         response = supabase.table("recipes").delete().eq("user_id", user.user.id).eq("id", id).execute()
@@ -59,7 +59,7 @@ async def delete_recipe(id: str, user=Depends(verify_jwt)):
             status_code=500, detail=f"Deleting recipes failed: {e}"
         )
 
-@router.post("/random")
+@router.post("/random", tags=['recipes'])
 async def create_random(user=Depends(verify_jwt)):
     try:
         recipe: Recipe = await generate_recipe()

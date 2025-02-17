@@ -6,7 +6,7 @@ from app.schemas.auth import User
 
 router = APIRouter()
 
-@router.post("/signup")
+@router.post("/signup", tags=['auth'])
 async def signup(user: User):
     try:
         response = supabase.auth.sign_up(jsonable_encoder(user))
@@ -18,7 +18,7 @@ async def signup(user: User):
             status_code=500, detail=f"Signup failed: {e}"
         )
     
-@router.post("/signin")
+@router.post("/signin", tags=['auth'])
 async def signin(user: User):
     try:
         response = supabase.auth.sign_in_with_password(jsonable_encoder(user))
@@ -30,7 +30,7 @@ async def signin(user: User):
             status_code=500, detail=f"Signin failed: {e}"
         ) 
     
-@router.get("/me")
+@router.get("/me", tags=['auth'])
 async def me(token=Depends(verify_jwt_ret)):
     try:
         response = supabase.auth.get_user(token)

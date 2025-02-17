@@ -5,22 +5,33 @@ from app.api.routers import auth, recipes
 description = """
 The Mystic Menu API empowers culinary creativity. It provides the tools for developers to build innovative recipe creation and management applications.  Key features include:
 
-Recipe Creation: Enable users to easily create and store their own recipes, including ingredients, instructions, and images.
-Customization: Support personalized recipe variations, dietary adjustments, and ingredient substitutions.
-Organization: Facilitate recipe organization through categories, tags, collections, and meal planning features.
-Sharing: Allow users to share their culinary creations with friends, family, or the wider community.
-Integration: Seamlessly integrate recipe management into existing food-related apps or platforms.
+**Recipe Creation**: Enable users to easily create and store their own recipes.\n
+**Customization**: Support personalized recipe variations.\n
+**Organization**: Facilitate recipe organization through categories, tags, collections, and meal planning features.\n
+**Sharing**: Allow users to share their culinary creations with friends, family, or the wider community.\n
+**Integration**: Seamlessly integrate recipe management into existing food-related apps or platforms.\n
 """
+
+tags_metadata = [
+    {
+        "name": "auth",
+        "description": "Operations with **authentication**. Provides access_token and user informations",
+    },
+    {
+        "name": "recipes",
+        "description": "Operations with **recipes**. Requires authentication via 'Authorize' button above, accepting access_token from /auth/signin"
+    },
+]
 
 app = FastAPI(
     title="The Mystic Menu API",
     description=description,
-    summary="The Mystic Menu API empowers developers to create innovative recipe management applications, enabling users to create, customize, organize, share, and integrate recipes.",
     version="0.0.1",
     license_info={
         "name": "MIT License",
         "url": "https://opensource.org/licenses/MIT"
-    }
+    },
+    openapi_tags=tags_metadata
 )
 
 app.add_middleware(
