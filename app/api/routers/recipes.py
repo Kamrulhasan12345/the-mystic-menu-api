@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
-from ai_deps import generate_description, generate_recipe
-from deps import verify_jwt, supabase
-from schemas.recipes import RecipeIn, Recipe
+from app.ai_deps import generate_description, generate_recipe
+from app.deps import verify_jwt, supabase
+from app.schemas.recipes import RecipeIn, Recipe
 
 router = APIRouter()
 

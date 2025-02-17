@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 
-from deps import supabase, verify_jwt, verify_jwt_ret
-from schemas.auth import User
+from app.deps import supabase, verify_jwt, verify_jwt_ret
+from app.schemas.auth import User
 
 router = APIRouter()
 
